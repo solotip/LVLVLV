@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMW Slippers — Тапки у формі BMW</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bmw-blue: #1C69D4;
+    --bmw-dark: #0A0A0A;
+    --bmw-white: #FFFFFF;
+    --bmw-silver: #C0C4CC;
+    --bmw-accent: #1C69D4;
+    --bmw-mid: #111827;
+    --bmw-card: #161B26;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bmw-dark);
+    color: var(--bmw-white);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(28,105,212,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(28,105,212,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(28,105,212,0.15);
+    border: 1px solid rgba(28,105,212,0.5);
+    color: #5FA8F5;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 1.2rem;
+    animation: fadeUp 0.7s ease 0.1s both;
+  }
+
+  .bmw-roundel {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 18vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: -1px;
+    color: var(--bmw-white);
+    animation: fadeUp 0.7s ease 0.15s both;
+  }
+
+  .hero-title span {
+    color: var(--bmw-blue);
+  }
+
+  .hero-sub {
+    font-size: clamp(0.9rem, 3vw, 1.05rem);
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-top: 1.2rem;
+    max-width: 340px;
+    line-height: 1.6;
+    animation: fadeUp 0.7s ease 0.25s both;
+  }
+
+  .price-block {
+    margin-top: 1.2rem;
+    animation: fadeUp 0.7s ease 0.35s both;
+  }
+
+  
+
+  .price-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
+    color: var(--bmw-white);
+    letter-spacing: 1px;
+  }
+
+  .price-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 16px 44px;
+    background: var(--bmw-blue);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    animation: fadeUp 0.7s ease 0.45s both;
+  }
+
+  .cta-btn:hover {
+    background: #2577E8;
+    transform: translateY(-2px);
+  }
+
+  .cta-btn:active { transform: scale(0.97); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 45%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: fadeUp 1s ease 1s both;
+  }
+
+  .scroll-hint span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid rgba(255,255,255,0.25);
+    border-bottom: 2px solid rgba(255,255,255,0.25);
+    transform: rotate(45deg);
+    animation: bounce 1.5s ease infinite;
+  }
+
+  /* ─── FEATURES ─── */
+  .features {
+    padding: 5rem 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bmw-blue);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    line-height: 1;
+    margin-bottom: 2.5rem;
+    color: var(--bmw-white);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .feature-item {
+    background: var(--bmw-card);
+    padding: 1.5rem 1.2rem;
+  }
+
+  .feature-icon {
+    font-size: 28px;
+    margin-bottom: 0.8rem;
+  }
+
+  .feature-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    color: var(--bmw-white);
+  }
+
+  .feature-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+
+  /* ─── PHOTOS ─── */
+  .photos-section {
+    padding: 0 1.5rem 5rem;
+    padding-top: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .photos-section .cta-btn {
+  width: 100%;
+  margin-top: 16px;
+}
+
+  .photos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+  }
+  
+
+  .photo-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  height: 220px;
+  padding: 0; 
+}
+
+  .photo-card:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .photo-placeholder {
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #161B26 0%, #1a2035 100%);
+  }
+
+  .photo-card:nth-child(2) .photo-placeholder,
+  .photo-card:nth-child(3) .photo-placeholder {
+    aspect-ratio: 4/3;
+  }
+
+  .photo-placeholder svg {
+    opacity: 0.2;
+  }
+
+  .photo-placeholder p {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    font-weight: 600;
+  }
+
+  .photo-label {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ─── ORDER FORM ─── */
+  .order-section {
+    padding: 0 1.5rem 6rem;
+    max-width: 600px;
+    margin: 0 auto;
+    scroll-margin-top: 2rem;
+  }
+
+  .order-card {
+    background: var(--bmw-card);
+    border: 1px solid rgba(28,105,212,0.25);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .order-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--bmw-blue), #5FA8F5, var(--bmw-blue));
+  }
+
+  .order-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.4rem;
+  }
+
+  .order-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1.8rem;
+    line-height: 1.5;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-input::placeholder { color: rgba(255,255,255,0.2); }
+  .form-input:focus { border-color: var(--bmw-blue); background: rgba(28,105,212,0.08); }
+
+  .form-select {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .form-select option { background: #161B26; color: #fff; }
+  .form-select:focus { border-color: var(--bmw-blue); }
+
+  .divider-or {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 1.2rem 0;
+  }
+
+  .divider-or::before, .divider-or::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .divider-or span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--bmw-blue);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .submit-btn:hover { background: #2577E8; transform: translateY(-1px); }
+  .submit-btn:active { transform: scale(0.98); }
+
+  .submit-btn svg { flex-shrink: 0; }
+
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .success-msg.show { display: block; }
+  .form-fields.hide { display: none; }
+
+  .success-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .success-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #4ADE80;
+  }
+
+  .success-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  .error-msg {
+    display: none;
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220,38,38,0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #F87171;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .error-msg.show { display: block; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(5px); }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  .photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-card {
+  height: 220px;
+}
+
+.photo-card:first-child {
+  height: 260px;
+}
+
+  .submit-btn.loading .spinner { display: block; }
+  .submit-btn.loading .btn-text { opacity: 0.6; }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-badge">🇺🇦 Лише в Україні</div>
+
+  <div class="hero-logo">
+    <svg class="bmw-roundel" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#1C69D4" stroke="#fff" stroke-width="4"/>
+      <path d="M50 2 A48 48 0 0 1 98 50 L50 50 Z" fill="#fff"/>
+      <path d="M50 50 L98 50 A48 48 0 0 1 50 98 Z" fill="#1C69D4"/>
+      <path d="M2 50 A48 48 0 0 1 50 2 L50 50 Z" fill="#1C69D4"/>
+      <path d="M50 98 A48 48 0 0 1 2 50 L50 50 Z" fill="#fff"/>
+      <circle cx="50" cy="50" r="48" fill="none" stroke="#fff" stroke-width="4"/>
+    </svg>
+  </div>
+
+  <h1 class="hero-title">
+    ТАПКИ<br><span>BMW</span>
+  </h1>
+
+  <p class="hero-sub">
+    Стильні домашні тапочки у формі легендарної BMW М4&nbsp;— для справжніх фанатів марки
+  </p>
+
+  <div class="price-block">
+    <div class="price-tag">1499 ₴</div>
+    <div class="price-note">мультирозмір · унісекс</div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Гортай</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ─── PHOTOS ─── -->
+<section class="photos-section">
+  <h2 style="margin-bottom:20px;">ФОТО</h2>
+
+  <div class="photos-grid">
+
+    <div class="photo-card">
+      <img src="IMG_9022.JPG" class="photo-img" alt="">
+    </div>
+
+    <div class="photo-card">
+      <img src="IMG_9023.JPG" class="photo-img" alt="">
+    </div>
+
+    <div class="photo-card">
+      <img src="IMG_9024.JPG" class="photo-img" alt="">
+    </div>
+
+  </div> <!-- photos-grid -->
+
+  <a href="#order" class="cta-btn">Замовити зараз</a>
+</section>
+
+
+<!-- ─── FEATURES ─── -->
+<section class="features">
+  <div class="section-label">Чому це круто</div>
+  <h2 class="section-title">ДЕТАЛІ,<br>ЯКІ ВРАЖАЮТЬ</h2>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feature-icon">🚗</div>
+      <div class="feature-title">Форма BMW</div>
+      <div class="feature-desc">Точна копія силуету легендарного авто</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">📐</div>
+      <div class="feature-title">Мультирозмір</div>
+      <div class="feature-desc">Підходить для розміру 36–45</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🛡️</div>
+      <div class="feature-title">М'яка підошва</div>
+      <div class="feature-desc">Нековзне покриття та комфортна пінка</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🎁</div>
+      <div class="feature-title">Ідеальний подарунок</div>
+      <div class="feature-desc">Для себе чи близьких автолюбителів</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ORDER FORM ─── -->
+<section class="order-section" id="order">
+  <div class="section-label">Замовлення</div>
+  <h2 class="section-title" style="margin-bottom: 1.5rem;">ОФОРМИ<br>ЗАМОВЛЕННЯ</h2>
+
+  <div class="order-card">
+    <div class="form-fields" id="formFields">
+      <p class="order-sub">Залиш свій Telegram або номер телефону — ми зв'яжемось і підтвердимо замовлення</p>
+
+      <div class="form-group">
+        <label class="form-label" for="tgInput">Нік у Telegram</label>
+        <input class="form-input" id="tgInput" type="text" placeholder="@твій_нік" autocomplete="off">
+      </div>
+
+      <div class="divider-or"><span>або</span></div>
+
+      <div class="form-group">
+        <label class="form-label" for="phoneInput">Номер телефону</label>
+        <input class="form-input" id="phoneInput" type="tel" placeholder="+380 XX XXX XX XX">
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="sendOrder()">
+        <span class="spinner" id="spinner"></span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        <span class="btn-text">Надіслати замовлення</span>
+      </button>
+
+      <div class="error-msg" id="errorMsg">Вкажіть Telegram або номер телефону</div>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <div class="success-icon">🎉</div>
+      <div class="success-title">Успішно!</div>
+      <p class="success-desc">Дякуємо! Ваше замовлення прийнято.<br>Ми зв'яжемось з вами найближчим часом.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>© 2025 BMW Slippers Ukraine · Всі права захищені</p>
+</footer>
+
+<script>
+  // ─── НАЛАШТУВАННЯ TELEGRAM ───────────────────────────────────────────────
+  // Заміни ці значення на свої!
+  const TG_BOT_TOKEN = '8665751875:AAFWbZOVtDgg4BdMODOdqGpOHyGOodu536Y';
+  const TG_CHAT_ID   = '1243973834';
+  // ─────────────────────────────────────────────────────────────────────────
+
+  let selectedSize = '';
+
+  function selectSize(btn) {
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedSize = btn.dataset.size;
+    document.getElementById('sizeSelect').value = selectedSize;
+  }
+
+  async function sendOrder() {
+    const tg    = document.getElementById('tgInput').value.trim();
+    const phone = document.getElementById('phoneInput').value.trim();
+    const size = 'не вказано';
+    const err   = document.getElementById('errorMsg');
+    const btn   = document.getElementById('submitBtn');
+
+    err.classList.remove('show');
+
+    if (!tg && !phone) {      err.classList.add('show');
+      return;
+    }
+
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+
+    const contact = tg ? `Telegram: ${tg}` : `Телефон: ${phone}`;
+
+    const text = [
+  '🚗 *Нове замовлення BMW Slippers*',
+  '',
+  `📱 Контакт: ${contact}`,
+  '',
+  `🕐 ${new Date().toLocaleString('uk-UA')}`
+].join('\n');
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TG_CHAT_ID,
+          text,
+          parse_mode: 'Markdown'
+        })
+      });
+
+      const data = await res.json();
+      if (data.ok) {
+        document.getElementById('formFields').classList.add('hide');
+        document.getElementById('successMsg').classList.add('show');
+      } else {
+        throw new Error(data.description || 'Помилка Telegram API');
+      }
+    } catch (e) {
+      err.textContent = 'Помилка відправки. Перевір токен бота або зв\'яжись напряму.';
+      err.classList.add('show');
+      btn.classList.remove('loading');
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>
